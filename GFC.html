@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GFC</title>
+    <style>
+        .checkboxTwo {
+            width: 120px;
+            height: 40px;
+            background: #333;
+            margin: 20px 60px;
+
+            border-radius: 50px;
+            position: relative;
+        }
+        .checkboxTwo:before {
+            content: '';
+            position: absolute;
+            top: 19px;
+            left: 14px;
+            height: 2px;
+            width: 90px;
+            background: #111;
+        }
+        .checkboxTwo label {
+            display: block;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+
+            -webkit-transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            -o-transition: all .5s ease;
+            -ms-transition: all .5s ease;
+            transition: all .5s ease;
+            cursor: pointer;
+            position: absolute;
+            top: 9px;
+            z-index: 1;
+            left: 12px;
+            background: #ddd;
+        }
+        .checkboxTwo input[type=checkbox]:checked + label {
+            left: 84px;
+            background: #26ca28;
+        }
+        input[type=checkbox]{
+            visibility: hidden;
+        }
+        .name{
+            font-size: 60px;
+        }
+    </style>
+
+</head>
+<body>
+<form class="container">
+    <center>
+            <table>
+                <tr>
+                    <td>
+                        <div class="checkboxTwo">
+                            <input id="good" type="checkbox" onclick="run(this.id)">
+                            <label for="good"></label>
+                        </div>
+                    </td>
+                    <td><label type="text" class="name">GOOD</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkboxTwo">
+                            <input id="cheap" type="checkbox" onclick="run(this.id)">
+                            <label for="cheap"></label>
+                        </div>
+                    </td>
+                    <td><label type="text" class="name">CHEAP</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkboxTwo">
+                            <input id="fast" type="checkbox" onclick="run(this.id)">
+                            <label for="fast"></label>
+                        </div>
+                    </td>
+                    <td><label type="text" class="name">FAST</label></td>
+                </tr>
+            </table>
+        </section>
+    </center>
+</form>
+<script>
+    let checkbox = [];
+
+    function run(checkboxid) {
+        let check = document.getElementById(checkboxid);
+        if (check.checked) {
+            checkbox.push(checkboxid);
+        }
+        if (checkbox.length === 3) {
+            document.getElementById(checkbox[0]).checked = false;
+            checkbox.shift();
+        }
+        if (checkbox.length < 3) {
+            if (!check.checked) {
+                let position = checkbox.indexOf(checkboxid);
+                checkbox.splice(position, 1);
+            }
+        }
+    }
+</script>
+</body>
+</html>
